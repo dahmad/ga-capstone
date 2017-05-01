@@ -1,16 +1,20 @@
-<script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
-
 # General Assembly Capstone Project
 
 ## Abstract: 
 
 Sampling is a key component in the production of hip hop instrumentals. Sampling in this case refers to “the act of taking a portion, or sample, of one sound recording and reusing it as an instrument or a sound recording in a different song or piece” ([Wikipedia](https://en.wikipedia.org/wiki/Sampling_(music))). Manually listening to hundreds of audio segments in pursuit of a handful of useful ones is tedious and laborious, so I set out to determine what features of a particular audio segment make it more or less sample-worthy than another audio segment derived from the same source track. Since what defines a good sample is subjective, I listened to 3,196 audio segments [algorithmically sliced](https://www.image-line.com/support/FLHelp/html/plugins/Slicex.htm) from 4 songs and manually classified each segment as “sample-worthy” (1) or “not-sample-worthy” (0) according to my own preferences. I then applied a number of digital signal transformations to the audio segment arrays to be used as potential features in a classification model. Through rigorous feature selection, I was able to return an XGBClassifier model with an ROC score and a recall score above 0.70. I then fed slices from an unseen song through the model, returning 32 segments ranked by the probability they would be classified as “sample-worthy.” Finally, I was able to manually listen to the selected segments, further select usuable sounds, and then arrange those sounds to construct a new instrumental.
 
-One resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), with existing vocals and drums added for context.
+One resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), with vocals and drums added for context.
 
 ## Data Acquisition
 
-In order to make manually listening to and classifying a large number of audio segments effortless, I first had to create an application that would feed me one segment, wait for me to classify it, store that classification, then feed me the next segment. I accomplished this by utilizing the [Kivy](https://kivy.org/) library.
+In order to make manually listening to and classifying a large number of audio segments effortless, I first had to create an application that would
+* feed me one segment
+* wait for my keyboard input to classify it
+* store that classification
+* then feed me the next segment. 
+
+I accomplished this by utilizing the [Kivy](https://kivy.org/) library.
 
 ![alt text](https://github.com/dahmad/ga-capstone/blob/master/images/kivy.gif "Manually classifying segments through Kivy application")
 
@@ -38,8 +42,10 @@ For each model, a final train-test split was performed and the model was fit wit
 
 I then ran a list of segments from a brand new song through this pickled model and ranked the segmetns by their predict_proba_ values. The top 32 segments were copied into a new folder. The selected segments were then uploaded into a digital audio workstation (FLStudio). I then arranged five segments that I liked into a new instrumental. 
 
-That resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), with existing vocals and drums added for context.
+That resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), wubith existing vocals and drums added for context.
 
 ## Future Deployment Strategies
 
 The biggest limiting factors were my lack of signal processing expertise and lack of heavy processing power. A larger dataset transformed in an informed way could potentially provide a more accurate model with fewer features, which would in turn require less time. Each of the 22 columns in the final model takes approximately one minute to create before the model can begin classifying the new inputs.
+
+Furthermore, compiling the beat slicing, classification, and selection playback into one Kivy app would be a user-friendly way of deploying the model.
