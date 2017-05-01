@@ -1,8 +1,12 @@
+<script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
+
 # General Assembly Capstone Project
 
 ## Abstract: 
 
-Sampling is a key component in the production of hip hop instrumentals. Sampling in this case refers to “the act of taking a portion, or sample, of one sound recording and reusing it as an instrument or a sound recording in a different song or piece” [1](https://en.wikipedia.org/wiki/Sampling_(music)). Manually listening to hundreds of audio segments in pursuit of a handful of useful ones is tedious and laborious, so I set out to determine what features of a particular audio segment make it more or less sample-worthy than another audio segment derived from the same source track. Since what defines a good sample is subjective, I listened to 3,196 audio segments [algorithmically sliced](https://www.image-line.com/support/FLHelp/html/plugins/Slicex.htm) from 4 songs and manually classified each segment as “sample-worthy” (1) or “not-sample-worthy” (0) according to my own preferences. I then applied a number of digital signal transformations to the audio segment arrays to be used as potential features in a classification model. Through rigorous feature selection, I was able to return an XGBClassifier model with an ROC score and a recall score above 0.70. I then fed slices from an unseen song through the model, returning 32 segments ranked by the probability they would be classified as “sample-worthy.” Finally, I was able to manually listen to the selected segments, further select usuable sounds, and then arrange those sounds to construct a new instrumental.
+Sampling is a key component in the production of hip hop instrumentals. Sampling in this case refers to “the act of taking a portion, or sample, of one sound recording and reusing it as an instrument or a sound recording in a different song or piece” ([Wikipedia](https://en.wikipedia.org/wiki/Sampling_(music))). Manually listening to hundreds of audio segments in pursuit of a handful of useful ones is tedious and laborious, so I set out to determine what features of a particular audio segment make it more or less sample-worthy than another audio segment derived from the same source track. Since what defines a good sample is subjective, I listened to 3,196 audio segments [algorithmically sliced](https://www.image-line.com/support/FLHelp/html/plugins/Slicex.htm) from 4 songs and manually classified each segment as “sample-worthy” (1) or “not-sample-worthy” (0) according to my own preferences. I then applied a number of digital signal transformations to the audio segment arrays to be used as potential features in a classification model. Through rigorous feature selection, I was able to return an XGBClassifier model with an ROC score and a recall score above 0.70. I then fed slices from an unseen song through the model, returning 32 segments ranked by the probability they would be classified as “sample-worthy.” Finally, I was able to manually listen to the selected segments, further select usuable sounds, and then arrange those sounds to construct a new instrumental.
+
+The resulting instrumental can be heard here, with existing vocals and drums added for context:
 
 ## Data Acquisition
 
@@ -34,7 +38,7 @@ For each model, a final train-test split was performed and the model was fit wit
 
 I then ran a list of segments from a brand new song through this pickled model and ranked the segmetns by their predict_proba_ values. The top 32 segments were copied into a new folder. The selected segments were then uploaded into a digital audio workstation (FLStudio). I then arranged five segments that I liked into a new instrumental. 
 
-Here is that instrumental first by itself then mocked up with existing vocals and drums for context.
+
 
 <audio src="https://github.com/dahmad/ga-capstone/blob/master/output.mp3" controls preload></audio>
 
