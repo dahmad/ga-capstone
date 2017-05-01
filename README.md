@@ -34,10 +34,9 @@ For each model, a final train-test split was performed and the model was fit wit
 
 I then ran a list of segments from a brand new song through this pickled model and ranked the segmetns by their predict_proba_ values. The top 32 segments were copied into a new folder. The selected segments were then uploaded into a digital audio workstation (FLStudio). I then arranged five segments that I liked into a new instrumental. 
 
-<audio controls="controls">
-  <source type="audio/mp3" src="https://github.com/dahmad/ga-capstone/blob/master/output.mp3"></source>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+Here is that instrumental first by itself then mocked up with existing vocals and drums for context.
+
+<audio src="https://github.com/dahmad/ga-capstone/blob/master/output.mp3" controls preload></audio>
 
 ## Future Deployment Strategies
 
