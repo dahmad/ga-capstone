@@ -54,6 +54,7 @@ While the model was scoring well, it was still prohibitively time-consuming to r
 Looking at the feature importances of these columns, I saw a sharp drop after three and again after eight features. 
 
 ![alt text](https://github.com/dahmad/ga-capstone/blob/master/images/features.png "XGBClassifier Feature Importances")
+
 *Figure 2.* XGBClassifier Feature Importances. See [code](https://github.com/dahmad/ga-capstone/blob/master/optimization.ipynb).
 
 I ran models for both subsets of data and found that with only three features, I was able to actually increase recall at the expense of a few percentage points on the ROC score with the benefit of taking one eighth of the time to run. The model with three features became my final model.
@@ -62,7 +63,7 @@ I ran models for both subsets of data and found that with only three features, I
 
 I ran a list of segments from a brand new song through the final pickled model and ranked the segments by their predict_proba_ values. The top 32 segments were copied into a new folder. The selected segments were then uploaded into a digital audio workstation (FLStudio), where I was able to arrange five of those segments that I liked into a new instrumental. 
 
-That resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), wubith existing vocals and drums added for context.
+That resulting instrumental can be heard [here](https://drive.google.com/open?id=0BxhJCrTr-R-BVGd3RGMzd2pRZms), with existing vocals and drums added for context.
 
 ## Future Deployment Strategies
 
